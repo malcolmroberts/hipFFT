@@ -127,7 +127,7 @@ set_target_properties( hipfft PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BIN
 
 if (BUILD_WITH_COMPILER STREQUAL "HIP-NVCC" )
   set_property(TARGET hipfft PROPERTY POSITION_INDEPENDENT_CODE ON)
-  set ( CXX_FLAGS "${CXX_FLAGS} -Xcompiler=-fPIC" )
+  target_compile_options(hipfft PRIVATE $<$<COMPILE_LANGUAGE:CUDA>: -Xcompiler -fPIC >)
 endif()
 
 #TODO:
